@@ -1,0 +1,1 @@
+The data directory needs to exist, but shouldn't be persistent across clocks.
