@@ -1,0 +1,14 @@
+#+TITLE: Bill of Materials
+
+
+| Part name                          | Quantity | Price | URL                                   |   Cost |
+|------------------------------------+----------+-------+---------------------------------------+--------|
+| Raspberry Pi Zero W                |        1 | 14.00 | https://www.adafruit.com/product/3708 |    14. |
+| Protoboard Bonnet                  |        1 |  4.50 | https://www.adafruit.com/product/3203 |    4.5 |
+| Nano thermal printer               |        1 | 44.95 | https://www.adafruit.com/product/2752 |  44.95 |
+| Speaker                            |        1 |  3.95 | https://www.adafruit.com/product/4445 |   3.95 |
+| I2S Amplifier                      |        1 |  5.95 | https://www.adafruit.com/product/3006 |   5.95 |
+| 4-digit 7-segment display 0.56"    |        1 | 10.95 | https://www.adafruit.com/product/1002 |  10.95 |
+| 2.1mm jack to screw terminal block |        1 |  2.00 | https://www.adafruit.com/product/368  |     2. |
+| Terminal block (pack of 5)         |        1 |  2.95 | https://www.adafruit.com/product/724  |   2.95 |
+#+TBLFM: $5=$2*$3
