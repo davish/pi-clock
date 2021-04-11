@@ -9,7 +9,7 @@ from signal import pause
 
 from common import to_string, from_string
 
-ALARMS = "alarms.json"
+ALARMS = "settings/alarms.json"
 LAST_ALARM = "data/LAST_ALARM"
 
 button = Button(5)
