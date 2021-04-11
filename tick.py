@@ -22,16 +22,18 @@ def main():
 
     display.brightness = 0.5
 
-    now = datetime.now()
 
     with open(SLEEP_SETTINGS, "r") as f:
         sleep_settings = json.load(f)
 
+    now = datetime.now()
     nowt = now.time()
 
-    if from_string(json["begin"]) < nowt or nowt < from_string(json["end"]):
+    if from_string(sleep_settings["begin"]) < nowt or nowt < from_string(sleep_settings["end"]):
+        print("sleep mode, turning off display...")
         display.fill(0)
     else:
+        current_time = get_time_string(now)
         display.print(current_time)
 
 if __name__ == "__main__":
