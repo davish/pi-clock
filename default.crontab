@@ -1,3 +1,4 @@
 @reboot /home/pi/clock/tick.py &
 */1 * * * * /home/pi/clock/tick.py
 */1 * * * * /home/pi/clock/alarm.py
+0 8 * * * /home/pi/clock/podcast.py get
