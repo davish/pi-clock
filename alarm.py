@@ -4,15 +4,13 @@ import json
 from datetime import datetime
 from pygame import mixer
 from time import sleep
-from gpiozero import Button
 from signal import pause
 
-from common import to_string, from_string
+from common import to_string, from_string, absolute_path_of, setup_gpio, register_callback, clear_callback
 
-ALARMS = "settings/alarms.json"
-LAST_ALARM = "data/LAST_ALARM"
+ALARMS = absolute_path_of("settings/alarms.json")
+LAST_ALARM = absolute_path_of("data/LAST_ALARM")
 
-button = Button(5)
 been_pressed = False
 
 def play():
@@ -20,11 +18,9 @@ def play():
     while mixer.music.get_busy() and not been_pressed:
         sleep(0.1)
 
-def handler():
+def handler(x):
     global been_pressed
     been_pressed = True
-
-button.when_pressed = handler
 
 def sound_alarm():
     mixer.init()
@@ -62,12 +58,15 @@ def should_sound_alarm(alarm_time):
     return False
 
 def main():
+    setup_gpio()
     alarms = get_alarms()
     next_alarm = get_next_alarm(alarms)
     if should_sound_alarm(next_alarm):
+        register_callback(handler)
         with open(LAST_ALARM, "w") as f:
             f.write(datetime.now().isoformat())
         sound_alarm()
+        clear_callback()
 
 
 

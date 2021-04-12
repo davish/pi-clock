@@ -1,0 +1,3 @@
+@reboot /home/pi/clock/tick.py &
+*/1 * * * * /home/pi/clock/tick.py
+*/1 * * * * /home/pi/clock/alarm.py
