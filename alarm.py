@@ -12,6 +12,7 @@ import podcast
 
 ALARMS = absolute_path_of("settings/alarms.json")
 LAST_ALARM = absolute_path_of("data/LAST_ALARM")
+RING = absolute_path_of("ring.mp3")
 
 been_pressed = False
 
@@ -26,7 +27,7 @@ def handler(x):
 
 def sound_alarm():
     mixer.init()
-    mixer.music.load("ring.mp3")
+    mixer.music.load(RING)
     while not been_pressed:
         play()
         sleep(0.5)
@@ -48,17 +49,16 @@ def get_next_alarm(alarms):
         return None
 
 def should_sound_alarm(alarm_time):
-
     try:
         with open(LAST_ALARM, "r") as f:
             last_alarm = datetime.fromisoformat(f.read())
     except (ValueError, FileNotFoundError):
         last_alarm = datetime(1970, 1, 1)
     if last_alarm.date() < datetime.now().date():
-        # If we sounded an earlier alarm, then sound this one.
         return True, True
 
     if last_alarm.time() < alarm_time:
+        # If we sounded an earlier alarm, then sound this one.
         return True, False
 
     return False, False
