@@ -67,6 +67,8 @@ def main():
     setup_gpio()
     alarms = get_alarms()
     next_alarm = get_next_alarm(alarms)
+    if next_alarm is None:
+        return
     should_sound, first_alarm = should_sound_alarm(next_alarm)
     if should_sound:
         register_callback(handler)
