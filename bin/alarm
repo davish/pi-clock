@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+
+import json
+import argparse
+
+
+SETTINGS = "settings.json"
+
+def toggle_alarm(time, alarms, cmd):
+    alarms[time] = True if cmd == "on" else False
+    return alarms
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("cmd")
+    parser.add_argument("time", nargs="?")
+    args = parser.parse_args()
+
+    with open(SETTINGS) as fsettings:
+        settings = json.load(fsettings)
+        alarm_settings = settings["alarms"]
+
+    if args.cmd == "on" or args.cmd == "off":
+        settings["alarms"] = toggle_alarm(args.time, alarm_settings, args.cmd)
+        with open(SETTINGS, "w") as fsettings:
+            json.dump(settings, fsettings, indent=2)
+    elif args.cmd == "list":
+        print("\n".join([time for time, activated in alarm_settings.items() if activated]))

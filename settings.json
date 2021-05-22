@@ -1,0 +1,10 @@
+{
+  "alarms": {
+    "08:00 AM": true,
+    "09:00 AM": true
+  },
+  "sleep": {
+    "begin": "10:00 PM",
+    "end": "08:00 AM"
+  }
+}

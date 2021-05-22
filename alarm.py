@@ -10,7 +10,7 @@ from common import to_string, from_string, absolute_path_of, setup_gpio, registe
 
 import podcast
 
-ALARMS = absolute_path_of("settings/alarms.json")
+SETTINGS = absolute_path_of("settings.json")
 LAST_ALARM = absolute_path_of("data/LAST_ALARM")
 RING = absolute_path_of("ring.mp3")
 
@@ -33,8 +33,8 @@ def sound_alarm():
         sleep(0.5)
 
 def get_alarms():
-    with open(ALARMS, "r") as alarmfile:
-        alarms = json.load(alarmfile)
+    with open(SETTINGS, "r") as alarmfile:
+        alarms = json.load(alarmfile)["alarms"]
     return [from_string(k) for k, v in alarms.items() if v]
 
 def time_diff(a, b):

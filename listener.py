@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 
-from gpiozero import Button
 from signal import pause
-from subprocess import check_call
 
 from Adafruit_Thermal import *
 
@@ -17,6 +15,7 @@ counter = 0
 
 TICK_PY = absolute_path_of("tick.py")
 
+
 def handler(x):
     if is_sleeping():
         print("brighten for a minute.")
@@ -24,6 +23,7 @@ def handler(x):
         tick(True)
     else:
         print("not sleeping. noop for now.")
+
 
 setup_gpio()
 register_callback(handler)
