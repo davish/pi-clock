@@ -54,10 +54,11 @@ def should_sound_alarm(alarm_time):
             last_alarm = datetime.fromisoformat(f.read())
     except (ValueError, FileNotFoundError):
         last_alarm = datetime(1970, 1, 1)
-    if last_alarm.date() < datetime.now().date():
+    now = datetime.now().time()
+    if last_alarm.date() < datetime.now().date() and alarm_time == now:
         return True, True
 
-    if last_alarm.time() < alarm_time:
+    if alarm_time == now:
         # If we sounded an earlier alarm, then sound this one.
         return True, False
 
