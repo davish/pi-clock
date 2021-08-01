@@ -16,10 +16,13 @@ def get_xkcd():
     comic = BeautifulSoup(latest.find("summary").text).find("img")
     return {"url": comic.get("src"), "alt": comic.get("alt"), "title": latest.find("title").text}
 
-if __name__ == "__main__":
+def print_xkcd():
     comic = get_xkcd()
     r = requests.get(comic["url"], stream=True)
     if r.status_code == 200:
         img = Image.open(io.BytesIO(r.content))
         printer.printImage(img, True)
         printer.feed(3)
+
+if __name__ == "__main__":
+    pass
