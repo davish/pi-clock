@@ -6,5 +6,6 @@
   "sleep": {
     "begin": "10:00 PM",
     "end": "08:00 AM"
-  }
+  },
+  "sunrise": "11:40 PM"
 }

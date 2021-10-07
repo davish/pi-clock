@@ -1,4 +1,3 @@
-import RPi.GPIO as GPIO
 from datetime import datetime
 import os
 import json
@@ -20,15 +19,18 @@ def absolute_path_of(fname):
 
 
 def setup_gpio():
+    import RPi.GPIO as GPIO
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(5, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 
 def register_callback(cb, port=5):
+    import RPi.GPIO as GPIO
     GPIO.add_event_detect(port, GPIO.RISING, callback=cb, bouncetime=500)
 
 
 def clear_callback(port=5):
+    import RPi.GPIO as GPIO
     GPIO.remove_event_detect(port)
 
 
