@@ -2,6 +2,7 @@
 
 import json
 from datetime import datetime
+import requests
 from pygame import mixer
 from time import sleep
 from signal import pause
@@ -13,6 +14,10 @@ import podcast
 SETTINGS = absolute_path_of("settings.json")
 LAST_ALARM = absolute_path_of("data/LAST_ALARM")
 RING = absolute_path_of("ring.mp3")
+
+KEY = "B679503A5B"  # TODO: move the key out of the git repo
+URL = f"http://solaris.local:80/api/{KEY}/lights/2/state"
+
 
 been_pressed = False
 
@@ -75,6 +80,16 @@ def main():
         register_callback(handler)
         with open(LAST_ALARM, "w") as f:
             f.write(datetime.now().isoformat())
+
+        payload = {
+            "on": True,
+            "bri": 40,
+            "ct": 450
+
+        }
+        r = requests.put(URL, json=payload)
+        sleep(2.0)
+        r = requests.put(URL, json=payload)  # for some reason need to double up on requests.
         sound_alarm()
         clear_callback()
         register_callback(lambda x: exit(0))
